@@ -196,6 +196,61 @@
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @media screen and (max-width: 768px) {
+            .main-wrapper { 
+                flex-direction: column; 
+            }
+
+            .sidebar { 
+                width: 100%; 
+                height: auto; 
+                position: relative; 
+                padding: 15px; 
+                border-right: none; 
+                border-bottom: 2px solid #e0d1b8;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .sidebar h2, 
+            .sidebar-info p { 
+                display: none; 
+            }
+
+            .sidebar-info {
+                order: 10;
+                width: 100%;
+                border: none;
+                margin: 20px 0;
+            }
+
+            .survey-btn {
+                width: 90%;
+                max-width: 300px;
+                margin: 0 auto;
+                font-size: 14px;
+            }
+
+            .filter-btn {
+                flex: 1 1 30%;
+                min-width: 90px;
+                padding: 10px 5px;
+                font-size: 12px;
+            }
+
+            .content {
+                padding: 20px 10px;
+            }
+
+            .card {
+                width: 280px;
+                height: 400px;
+                margin: 0 auto 20px auto;
+            }
+        }
     </style>
 </head>
 <body>
