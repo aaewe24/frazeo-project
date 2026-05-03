@@ -17,66 +17,68 @@
             box-sizing: border-box;
         }
 
-        header h1 {
-            transition: 0.4s;
-            cursor: default;
-        }
-        header h1:hover {
-            color: #5d4037;
-            transform: scale(1.02);
-        }
-
         body {
             background-color: #FFF9ED;
             font-family: "Comfortaa", sans-serif;
             min-height: 100vh;
         }
 
+        header h1 {
+            transition: 0.4s;
+            cursor: default;
+        }
+
+        header h1:hover {
+            color: #5d4037;
+            transform: scale(1.02);
+        }
+
         .hide-input {
             display: none;
+        }
+
+        .mobile-only {
+            display: none !important;
+        }
+
+        .pc-only {
+            display: block;
         }
 
         .hint-msg {
             display: none;
         }
-        
-        .pc-only {
+
+        #tab-animals:checked ~ .main-wrapper .welcome-msg,
+        #tab-food:checked ~ .main-wrapper .welcome-msg,
+        #tab-nature:checked ~ .main-wrapper .welcome-msg {
             display: none !important;
         }
 
-        .mobile-only {
-            display: none;
+        #tab-animals:checked ~ .main-wrapper .hint-msg,
+        #tab-food:checked ~ .main-wrapper .hint-msg,
+        #tab-nature:checked ~ .main-wrapper .hint-msg {
+            display: block !important;
         }
 
-
         .card-group {
-            display: none; 
+            display: none;
             flex-wrap: wrap;
             gap: 30px;
             justify-content: center;
             animation: slideUp 0.8s ease forwards;
         }
 
-        #tab-animals:checked ~ .main-wrapper .animals-list { 
-            display: flex; 
-        }
-        #tab-food:checked ~ .main-wrapper .food-list { 
-            display: flex; 
-        }
-        #tab-tools:checked ~ .main-wrapper .tools-list { 
-            display: flex; 
+        #tab-animals:checked ~ .main-wrapper .animals-list {
+            display: flex;
         }
 
-        #tab-animals:checked ~ .main-wrapper .welcome-msg,
-        #tab-food:checked ~ .main-wrapper .welcome-msg,
-        #tab-tools:checked ~ .main-wrapper .welcome-msg { 
-            display: none; 
+        #tab-food:checked ~ .main-wrapper .food-list {
+            display: flex;
         }
 
-        #tab-animals:checked ~ .main-wrapper .hint-msg,
-        #tab-food:checked ~ .main-wrapper .hint-msg,
-        #tab-tools:checked ~ .main-wrapper .hint-msg { 
-            display: block; 
+        #tab-nature:checked ~ .main-wrapper .nature-list {
+            display: flex;
         }
 
         .main-wrapper {
@@ -104,12 +106,12 @@
         }
 
         .sidebar-info {
-            margin-top: auto; 
+            margin-top: auto;
             padding-top: 20px;
             border-top: 1px solid #e0d1b8;
             display: flex;
             flex-direction: column;
-            gap: 10px; 
+            gap: 10px;
             font-size: 13px;
             color: #a08a70;
         }
@@ -131,8 +133,8 @@
 
         .survey-btn:hover {
             background-color: #f9e1ca;
-            color: #5d4037;
-            border-color: #5d4037;
+            color: #5d3740;
+            border-color: #5d3740;
             transform: translateY(-2px);
         }
 
@@ -220,17 +222,26 @@
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
         @media screen and (max-width: 768px) {
-            .main-wrapper { 
-                flex-direction: column; 
+            .pc-only {
+                display: none !important;
             }
 
-            .sidebar { 
-                width: 100%; 
-                height: auto; 
-                position: relative; 
-                padding: 15px; 
-                border-right: none; 
+            .mobile-only {
+                display: block !important;
+            }
+
+            .main-wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 15px;
+                border-right: none;
                 border-bottom: 2px solid #e0d1b8;
                 display: flex;
                 flex-direction: row;
@@ -239,9 +250,9 @@
                 gap: 8px;
             }
 
-            .sidebar h2, 
-            .sidebar-info p { 
-                display: none; 
+            .sidebar h2,
+            .sidebar-info p {
+                display: none;
             }
 
             .sidebar-info {
@@ -265,32 +276,29 @@
                 font-size: 12px;
             }
 
-            .content {
-                padding: 20px 10px;
-            }
-
-            .card {
-                width: 280px;
-                height: 400px;
-                margin: 0 auto 20px auto;
-            }
-
-                .pc-only {
-                display: none !important;
-            }
-            .mobile-only {
-                display: block !important;
-            }
-
             .filter-btn:hover {
                 transform: none !important;
                 background: white;
             }
 
             .filter-btn:active {
-                background-color: #fdf5e6 !important; 
+                background-color: #fdf5e6 !important;
                 border-color: #5d4037 !important;
-                transition: 0.1s; 
+                transition: 0.1s;
+            }
+
+            .content {
+                padding: 20px 10px;
+            }
+
+            header h1 {
+                font-size: 22px;
+            }
+
+            .card {
+                width: 280px;
+                height: 400px;
+                margin: 0 auto 20px auto;
             }
         }
     </style>
@@ -299,17 +307,17 @@
 
     <input type="radio" name="tabs" id="tab-animals" class="hide-input">
     <input type="radio" name="tabs" id="tab-food" class="hide-input">
-    <input type="radio" name="tabs" id="tab-tools" class="hide-input">
+    <input type="radio" name="tabs" id="tab-nature" class="hide-input">
 
     <div class="main-wrapper">
         <nav class="sidebar">
             <h2>Темы</h2>
             <label for="tab-animals" class="filter-btn">Животные</label>
             <label for="tab-food" class="filter-btn">Еда</label>
-            <label for="tab-tools" class="filter-btn">Природа</label>
+            <label for="tab-nature" class="filter-btn">Природа</label>
             
             <div class="sidebar-info">
-                <a href="https://forms.yandex.ru/u/69f4692184227c22710006aa/?utm_source=share2&utm_content=success" target="_blank" class="survey-btn">Поделитесь своим мнением!</a>
+                <a href="https://yandex.ru" target="_blank" class="survey-btn">Поделитесь своим мнением!</a>
                 <p>Проект по русскому языку</p>
                 <p>2026 год</p>
             </div>
@@ -319,75 +327,34 @@
             <header>
                 <h1>Фразеологизмы в картинках</h1>
 
-                <p class="welcome-msg header-p pc-only">Выберите тему в меню слева, чтобы карточки появились!</p>
-                <p class="hint-msg header-p pc-only">Наведите курсор на картинку, чтобы узнать значение!</p>
+                <div class="pc-only">
+                    <p class="welcome-msg header-p">Выберите тему в меню слева, чтобы карточки появились!</p>
+                    <p class="hint-msg header-p">Наведите курсор на картинку, чтобы узнать значение!</p>
+                </div>
 
-                <p class="welcome-msg header-p mobile-only">Выберите тему в меню выше, чтобы карточки появились!</p>
-                <p class="hint-msg header-p mobile-only">Нажмите на картинку, чтобы узнать значение!</p>
+                <div class="mobile-only">
+                    <p class="welcome-msg header-p">Выберите тему в меню выше, чтобы карточки появились!</p>
+                    <p class="hint-msg header-p">Нажмите на картинку, чтобы узнать значение!</p>
+                </div>
             </header>
 
             <div class="card-container">
                 <div class="card-group animals-list">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front"><img src="img/1.1.png" alt="Лицо"></div>
-                            <div class="card-back"><img src="img/1.2.png" alt="Оборот"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front"><img src="img/2.1.png" alt="Лицо"></div>
-                            <div class="card-back"><img src="img/2.2.png" alt="Оборот"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front"><img src="img/3.1.png" alt="Лицо"></div>
-                            <div class="card-back"><img src="img/3.2.png" alt="Оборот"></div>
-                        </div>
-                    </div>
+                    <div class="card"><div class="card-inner"><div class="card-front"><img src="img/1.1.png" alt="Лицо"></div><div class="card-back"><img src="img/1.2.png" alt="Оборот"></div></div></div>
+                    <div class="card"><div class="card-inner"><div class="card-front"><img src="img/2.1.png" alt="Лицо"></div><div class="card-back"><img src="img/2.2.png" alt="Оборот"></div></div></div>
+                    <div class="card"><div class="card-inner"><div class="card-front"><img src="img/3.1.png" alt="Лицо"></div><div class="card-back"><img src="img/3.2.png" alt="Оборот"></div></div></div>
                 </div>
 
                 <div class="card-group food-list">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front"><img src="img/4.1.png" alt="Лицо"></div>
-                            <div class="card-back"><img src="img/4.2.png" alt="Оборот"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front"><img src="img/5.1.png" alt="Лицо"></div>
-                            <div class="card-back"><img src="img/5.2.png" alt="Оборот"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front"><img src="img/6.1.png" alt="Лицо"></div>
-                            <div class="card-back"><img src="img/6.2.png" alt="Оборот"></div>
-                        </div>
-                    </div>
+                    <div class="card"><div class="card-inner"><div class="card-front"><img src="img/4.1.png" alt="Лицо"></div><div class="card-back"><img src="img/4.2.png" alt="Оборот"></div></div></div>
+                    <div class="card"><div class="card-inner"><div class="card-front"><img src="img/5.1.png" alt="Лицо"></div><div class="card-back"><img src="img/5.2.png" alt="Оборот"></div></div></div>
+                    <div class="card"><div class="card-inner"><div class="card-front"><img src="img/6.1.png" alt="Лицо"></div><div class="card-back"><img src="img/6.2.png" alt="Оборот"></div></div></div>
                 </div>
 
-                <div class="card-group tools-list">
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front"><img src="img/7.1.png" alt="Лицо"></div>
-                            <div class="card-back"><img src="img/7.2.png" alt="Оборот"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front"><img src="img/8.1.png" alt="Лицо"></div>
-                            <div class="card-back"><img src="img/8.2.png" alt="Оборот"></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-inner">
-                            <div class="card-front"><img src="img/9.1.png" alt="Лицо"></div>
-                            <div class="card-back"><img src="img/9.2.png" alt="Оборот"></div>
-                        </div>
-                    </div>
+                <div class="card-group nature-list">
+                    <div class="card"><div class="card-inner"><div class="card-front"><img src="img/7.1.png" alt="Лицо"></div><div class="card-back"><img src="img/7.2.png" alt="Оборот"></div></div></div>
+                    <div class="card"><div class="card-inner"><div class="card-front"><img src="img/8.1.png" alt="Лицо"></div><div class="card-back"><img src="img/8.2.png" alt="Оборот"></div></div></div>
+                    <div class="card"><div class="card-inner"><div class="card-front"><img src="img/9.1.png" alt="Лицо"></div><div class="card-back"><img src="img/9.2.png" alt="Оборот"></div></div></div>
                 </div>
             </div>
         </main>
